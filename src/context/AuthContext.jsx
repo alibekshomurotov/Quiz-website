@@ -15,24 +15,39 @@ export function AuthProvider({ children }) {
       isAdmin: true 
     }]
     
-    if (saved) {
-      const parsed = JSON.parse(saved)
-      if (!parsed.find(u => u.username === 'admin')) {
-        return [...defaultUsers, ...parsed]
+    try {
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        if (!parsed.find(u => u.username === 'admin')) {
+          return [...defaultUsers, ...parsed]
+        }
+        return parsed
       }
-      return parsed
+    } catch (e) {
+      console.error('Users parse error:', e)
     }
     return defaultUsers
   })
 
   const [results, setResults] = useState(() => {
     const saved = localStorage.getItem('results')
-    return saved ? JSON.parse(saved) : []
+    try {
+      return saved ? JSON.parse(saved) : []
+    } catch (e) {
+      console.error('Results parse error:', e)
+      return []
+    }
   })
 
   const [user, setUser] = useState(() => {
     const saved = localStorage.getItem('currentUser')
-    return saved ? JSON.parse(saved) : null
+    try {
+      return saved ? JSON.parse(saved) : null
+    } catch (e) {
+      console.error('Current user parse error:', e)
+      localStorage.removeItem('currentUser') // Xato qiymatni o'chirish
+      return null
+    }
   })
 
   useEffect(() => {
