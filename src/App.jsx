@@ -10,17 +10,20 @@ import Admin from './pages/Admin'
 
 // Himoyalangan route komponenti
 function ProtectedQuiz() {
-  const user = JSON.parse(localStorage.getItem('currentUser'))
+  const userData = localStorage.getItem('currentUser')
+  const user = userData ? JSON.parse(userData) : null
   return user ? <Quiz /> : <Navigate to="/login" replace />
 }
 
 function ProtectedResults() {
-  const user = JSON.parse(localStorage.getItem('currentUser'))
+  const userData = localStorage.getItem('currentUser')
+  const user = userData ? JSON.parse(userData) : null
   return user ? <Results /> : <Navigate to="/login" replace />
 }
 
 function ProtectedAdmin() {
-  const user = JSON.parse(localStorage.getItem('currentUser'))
+  const userData = localStorage.getItem('currentUser')
+  const user = userData ? JSON.parse(userData) : null
   if (!user) return <Navigate to="/login" replace />
   if (!user.isAdmin) return <Navigate to="/" replace />
   return <Admin />
