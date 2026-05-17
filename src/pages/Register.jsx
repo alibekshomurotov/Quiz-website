@@ -34,8 +34,15 @@ export default function Register() {
   }
 
   return (
-    <div className="container animate-fade-in" style={{ padding: '60px 20px' }}>
-      <div className="card" style={{ maxWidth: '450px', margin: '0 auto' }}>
+    <div style={{ 
+      flex: 1,
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      padding: '20px',
+      width: '100%'
+    }}>
+      <div className="card animate-fade-in" style={{ maxWidth: '450px', width: '100%', margin: 0 }}>
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
           <h2 style={{ fontSize: '32px', color: '#333', marginBottom: '10px' }}>
             Ro'yxatdan o'tish 🚀
